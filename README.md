@@ -8,5 +8,5 @@ Users scan a QR code on the table, start a session, view the menu, and add items
 2. [Frontend Setup](https://github.com/sharipovjonibek/qr_menu_system/blob/main/frontend/README.md)
 
 ## Contributors
-- Backend : @sharipovjonibek
-- Frontend : @Rakhmatov01
+* [@sharipovjonibek](https://github.com/sharipovjonibek) - Backend
+* [@Rakhmatov01](https://github.com/Rakhmatov01) - Frontend
