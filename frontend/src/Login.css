@@ -28,14 +28,52 @@ body {
 }
 
 .login-container h1 {
+  color: red;
   font-size: 50px;
   font-family: "Satisfy", cursive;
   font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.header {
+  margin-bottom: 60px;
 }
 
 .form-container {
+  width: 100%;
+  padding: 0 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.form-container h2 {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.form-container form {
+  width: 100%;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.form-container input {
+  height: 35px;
+  margin-bottom: 10px;
+}
+
+.form-container button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  height: 35px;
+  cursor: pointer;
+  background: red;
+  color: #fff;
 }

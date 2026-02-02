@@ -1,18 +1,20 @@
+import { useParams } from "react-router-dom";
 import "./Login.css";
 function Login() {
+  const { tableNumber } = useParams();
   return (
     <div className="login-container">
-      <h1>Buxoro Kafe</h1>
-      <Header />
+      <h1>Buxoro Kafe </h1>
+      <Header tableNumber={tableNumber} />
       <Form />
     </div>
   );
 }
 
-function Header() {
+function Header({ tableNumber }) {
   return (
     <div className="header">
-      <h3>Table X</h3>
+      <h3>Table {tableNumber}</h3>
       <p>Welcome Guest</p>
     </div>
   );
