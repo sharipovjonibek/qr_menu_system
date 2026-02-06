@@ -28,7 +28,7 @@ body {
 }
 
 .login-container h1 {
-  color: red;
+  color: blue;
   font-size: 50px;
   font-family: "Satisfy", cursive;
   font-weight: 600;
@@ -37,6 +37,11 @@ body {
 
 .header {
   margin-bottom: 60px;
+  padding-right: 100px;
+}
+
+.header h3 {
+  font-size: 25px;
 }
 
 .form-container {
@@ -62,8 +67,11 @@ body {
 }
 
 .form-container input {
-  height: 35px;
+  padding-left: 15px;
+  border: 1px solid black;
+  height: 40px;
   margin-bottom: 10px;
+  border-radius: 6px;
 }
 
 .form-container button {
@@ -72,8 +80,10 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 6px;
-  height: 35px;
+  height: 40px;
   cursor: pointer;
   background: red;
   color: #fff;
+  font-size: 24px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
