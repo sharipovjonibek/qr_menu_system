@@ -10,17 +10,12 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {!token ? (
-          <Route
-            path="/table/:tableNumber"
-            element={<Login setToken={setToken} />}
-          />
-        ) : (
-          <Route
-            path="/table/:tableNumber/menu"
-            element={<Menu token={token} />}
-          />
-        )}
+        <Route
+          path="/table/:tableNumber"
+          element={
+            !token ? <Login setToken={setToken} /> : <Menu token={token} />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

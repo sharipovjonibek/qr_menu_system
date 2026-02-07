@@ -1,8 +1,8 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
+import React from "react";
 function Login({ setToken }) {
-  const navigate = useNavigate();
   console.log("working");
   const { tableNumber } = useParams();
   async function onHandleForm(e, customerName) {
@@ -20,13 +20,14 @@ function Login({ setToken }) {
     const token = await res.json();
     localStorage.setItem("session_token", token.token);
     setToken(token.token);
-    navigate(`/table/:${tableNumber}/menu`);
   }
   return (
-    <div className="login-container">
-      <h1>Buxoro Kafe </h1>
-      <Header tableNumber={tableNumber} />
-      <Form handleForm={onHandleForm} />
+    <div className="login-body">
+      <div className="login-container">
+        <h1>Buxoro Kafe </h1>
+        <Header tableNumber={tableNumber} />
+        <Form handleForm={onHandleForm} />
+      </div>
     </div>
   );
 }

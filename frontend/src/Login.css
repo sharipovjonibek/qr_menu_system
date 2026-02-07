@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-body {
+.login-body {
   background: rgb(243, 249, 252);
   min-height: 100vh;
   display: flex;
@@ -35,12 +35,12 @@ body {
   margin-bottom: 15px;
 }
 
-.header {
+.login-container .header {
   margin-bottom: 60px;
   padding-right: 100px;
 }
 
-.header h3 {
+.login-container .header h3 {
   font-size: 25px;
 }
 

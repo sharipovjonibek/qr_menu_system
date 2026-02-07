@@ -1,0 +1,83 @@
+.menu-body .header {
+  padding: 20px;
+  display: flex;
+  gap: 350px;
+  border: 1px solid rgba(63, 63, 160, 0.4);
+}
+
+.menu-body .header h1 {
+  font-size: 50px;
+  color: blue;
+}
+
+.categories-container {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 15px 30px;
+  display: flex;
+  gap: 20px;
+  background: #fff;
+}
+
+.category-btn {
+  all: unset;
+  cursor: pointer;
+  background: rgb(238, 238, 238);
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.selected {
+  background: red;
+  color: #fff;
+}
+
+.display-category {
+  padding: 40px;
+}
+
+.food-card {
+  width: 250px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.food-card img {
+  border-radius: 10px;
+  width: 250px;
+  height: auto;
+  max-height: 175px;
+}
+
+.card-info {
+  padding: 20px;
+}
+
+.card-info p {
+  margin: 20px 0px;
+}
+
+.card-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-action h3 {
+  color: red;
+}
+
+.card-action button {
+  all: unset;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: blue;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
