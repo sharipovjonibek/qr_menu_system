@@ -37,7 +37,6 @@
 
 .login-container .header {
   margin-bottom: 60px;
-  padding-right: 100px;
 }
 
 .login-container .header h3 {
@@ -58,12 +57,17 @@
   margin-bottom: 10px;
 }
 
+.error {
+  margin-top: 15px;
+  color: red;
+}
+
 .form-container form {
   width: 100%;
   padding: 0 30px;
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .form-container input {

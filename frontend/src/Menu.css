@@ -1,3 +1,10 @@
+.loading-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .menu-body .header {
   padding: 20px;
   padding-right: 150px;
@@ -93,4 +100,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.loader {
+  height: 15px;
+  aspect-ratio: 4;
+  display: grid;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  grid-area: 1/1;
+  --_g: no-repeat radial-gradient(farthest-side, #000 94%, #0000);
+  background:
+    var(--_g) left,
+    var(--_g) right;
+  background-size: 25% 100%;
+  animation: l34 1s infinite;
+  transform: translate(var(--d, 0)) rotate(0);
+}
+.loader:after {
+  --d: 37.5%;
+  animation-delay: 0.5s;
+}
+@keyframes l34 {
+  50%,
+  100% {
+    transform: translate(var(--d, 0)) rotate(0.5turn);
+  }
 }

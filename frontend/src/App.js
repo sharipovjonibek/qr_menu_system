@@ -1,22 +1,39 @@
 import { useEffect, useState } from "react";
 import Login from "./Login";
 import Menu from "./Menu";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useParams } from "react-router-dom";
 export default function App() {
-  useEffect(() => localStorage.removeItem("session_token"), []);
-
+  const { tableNumber } = useParams();
   const [token, setToken] = useState(localStorage.getItem("session_token"));
-  console.log(token);
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/table/:tableNumber"
-          element={
-            !token ? <Login setToken={setToken} /> : <Menu token={token} />
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+  const [active, setActive] = useState(false);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    async function checkActiveSession(tableNumber) {
+      const res = await fetch(
+        `http://127.0.0.1:8000/api/session/active/${tableNumber}`,
+      );
+      const data = await res.json();
+      setActive(data.active);
+      data.active && setToken(data.session.token);
+      setLoading(false);
+    }
+
+    checkActiveSession(tableNumber);
+  }, [tableNumber]);
+  if (loading)
+    return (
+      <div className="loading-container">
+        <div className="loader"></div>
+      </div>
+    );
+  return !active || !token ? (
+    <Login
+      setActive={setActive}
+      setToken={setToken}
+      tableNumber={tableNumber}
+    />
+  ) : (
+    <Menu token={token} tableNumber={tableNumber} />
   );
 }

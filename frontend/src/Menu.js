@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import "./Menu.css";
 
-export default function Menu({ token }) {
+export default function Menu({ token, tableNumber }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const { tableNumber } = useParams();
   const [menuData, setMenuData] = useState(null);
   function onHandleSelectedCategory(name) {
     setSelectedCategory(name);
@@ -26,9 +24,12 @@ export default function Menu({ token }) {
     }
   }, [token]);
 
-  console.log(menuData);
-
-  if (!menuData) return <div>...Loading</div>;
+  if (!menuData)
+    return (
+      <div className="loading-container">
+        <div className="loader"></div>
+      </div>
+    );
   return (
     <div className="menu-body">
       <Header menuData={menuData} tableNumber={tableNumber} />
@@ -95,7 +96,7 @@ function DisplayCategory({ selectedCategory, categories }) {
         {categories.map(
           (cat) =>
             cat.items.length !== 0 && (
-              <div>
+              <div key={cat.id}>
                 <h2 style={{ marginLeft: 40 }}>{cat.name}</h2>
                 <CategoryGrid chosenCategory={cat} />
               </div>
@@ -121,7 +122,6 @@ function CategoryGrid({ chosenCategory }) {
 }
 
 function FoodCard({ food }) {
-  console.log(food);
   return (
     <div className="food-card">
       <img src={`http://127.0.0.1:8000${food.image}`} alt={food.name} />
