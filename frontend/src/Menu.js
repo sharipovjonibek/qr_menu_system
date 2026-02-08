@@ -89,13 +89,30 @@ function Category({ catName, handleSelectCategory, selectedCategory }) {
 }
 
 function DisplayCategory({ selectedCategory, categories }) {
-  if (selectedCategory === "All") return;
+  if (selectedCategory === "All")
+    return (
+      <div>
+        {categories.map(
+          (cat) =>
+            cat.items.length !== 0 && (
+              <div>
+                <h2 style={{ marginLeft: 40 }}>{cat.name}</h2>
+                <CategoryGrid chosenCategory={cat} />
+              </div>
+            ),
+        )}
+      </div>
+    );
   let chosenCategory;
   categories.forEach((e) => {
     if (e.name === selectedCategory) chosenCategory = e;
   });
+  return <CategoryGrid chosenCategory={chosenCategory} />;
+}
+
+function CategoryGrid({ chosenCategory }) {
   return (
-    <div className="display-category">
+    <div className="category-grid">
       {chosenCategory.items.map((food) => (
         <FoodCard key={food.id} food={food} />
       ))}
@@ -111,10 +128,10 @@ function FoodCard({ food }) {
       <div className="card-info">
         <h3>{food.name}</h3>
         <p>{food.description}</p>
-        <div className="card-action">
-          <h3>{food.price}</h3>
-          <button>+</button>
-        </div>
+      </div>
+      <div className="card-action">
+        <h3>{food.price}</h3>
+        <button>+</button>
       </div>
     </div>
   );
