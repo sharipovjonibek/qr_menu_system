@@ -1,8 +1,25 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import TableSession,Table,Category
-from .serializers import TableSessionSerializer,CategoryWithItemsSerializer
+from rest_framework.decorators import api_view
+from django.shortcuts import get_object_or_404
+from .models import TableSession,Table,Category,Order
+from .serializers import TableSessionSerializer,CategoryWithItemsSerializer,OrderSerializer
+
+
+# Helper function to get session from Token
+def get_session_from_token(request):
+    token = request.headers.get('Authorization') or request.query_params.get("token")
+
+    if not token:
+        return None
+    
+    token = token.replace('Token','').replace('Bearer','').strip()
+
+    try:
+        return TableSession.objects.get(token=token,active=True)
+    except TableSession.DoesNotExist:
+        return None
 
 
 class ActiveSessionByTable(APIView):
@@ -57,15 +74,9 @@ class MenuView(APIView):
     
     def get(self,request):
 
-        token = request.headers.get('Authorization')
-        if not token:
-            return Response({"error":"Authorization token is required."},status=status.HTTP_401_UNAUTHORIZED)
-        token = token.replace('Token','').strip()
+        session = get_session_from_token(request)
 
-        try:
-            session = TableSession.objects.get(token=token,active=True)
-
-        except TableSession.DoesNotExist:
+        if not session:
             return Response({"error":"Invalid or inactive session token."},status=status.HTTP_401_UNAUTHORIZED)
 
         categories = Category.objects.all()
@@ -77,4 +88,34 @@ class MenuView(APIView):
         }
 
         return Response(response_data,status=status.HTTP_200_OK)
+
+
+class AddOrderView(APIView):
+    def post(self,request):
+        session = get_session_from_token(request)
+
+        if not session:
+            return Response({"error":"Invalid or inactive session token."},status=status.HTTP_401_UNAUTHORIZED)
+        
+        serializer = OrderSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save(table_session=session)
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+
+class MyOrdersView(APIView):
+    def get(self,request):
+        session = get_session_from_token(request)
+
+        if not session:
+            return Response({"error":"Invalid or inactive session token."},status=status.HTTP_401_UNAUTHORIZED)
+
+        orders = Order.objects.filter(table_session=session).order_by('-created_at')
+
+        serializer = OrderSerializer(orders,many=True)
+
+        return Response(serializer.data,status=status.HTTP_200_OK)
     
