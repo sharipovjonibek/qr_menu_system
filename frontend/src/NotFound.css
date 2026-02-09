@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+.notfound {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Subtle animated noise effect */
+.noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  animation: move 0.3s infinite;
+  pointer-events: none;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-10px, 10px);
+  }
+}
+
+.content {
+  text-align: center;
+  z-index: 2;
+  padding: 40px;
+}
+
+.content h1 {
+  font-size: 9rem;
+  margin: 0;
+  letter-spacing: 10px;
+  animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow:
+      2px 2px #ff004c,
+      -2px -2px #00fff0;
+  }
+  50% {
+    text-shadow:
+      -2px 2px #ff004c,
+      2px -2px #00fff0;
+  }
+  100% {
+    text-shadow:
+      2px -2px #ff004c,
+      -2px 2px #00fff0;
+  }
+}
+
+.content p {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.content span {
+  display: block;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+.content a {
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  background: #00fff0;
+  color: #0f2027;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.content a:hover {
+  background: #ff004c;
+  color: white;
+  transform: scale(1.05);
+}
