@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Login from "./Login";
 import Menu from "./Menu";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 export default function App() {
   const { tableNumber } = useParams();
   const [token, setToken] = useState(localStorage.getItem("session_token"));
