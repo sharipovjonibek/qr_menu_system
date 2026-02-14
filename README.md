@@ -1,7 +1,7 @@
-# QR Menu System
+# 🍽️ QR Menu System
 
-A **Digital QR Menu System for Restaurants** built with **Django REST Framework** (backend) and **React** (frontend).  
-Users scan a QR code on the table, start a session, view the menu, and add items to their order.
+A **Digital QR Menu System for Restaurants** built with **Django REST Framework** (backend) and **React** (frontend).
+Customers scan a QR code at their table to view the digital menu and call a waiter. Orders are created and managed by waiters, while the system supports real-time order tracking and payment processing (online or cashier).
 
 ## Table of contents
 1. [Backend Setup](https://github.com/sharipovjonibek/qr_menu_system/blob/main/backend/README.md)
